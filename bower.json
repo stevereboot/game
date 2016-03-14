@@ -1,0 +1,13 @@
+{
+    "name": "starter",
+    "version": "0.0.0",
+    "dependencies": {
+        "bootstrap": "latest",
+        "angular": "latest",
+        "ui-router": "latest",
+        "angular-sanitize": "latest",
+        "marked": "latest",
+        "highlightjs": "latest",
+        "phaser": "latest"
+    }
+}

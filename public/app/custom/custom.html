@@ -1,0 +1,94 @@
+<div ng-include src="'app/nav/nav.html'"></div>
+<div class="container">
+	<div class="row">
+		<h2>Custom Assets</h2>
+		<button class="btn btn-default" type="button" ng-click="custom.cashflow.run()">Run CF</button>
+		<hr>
+
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title pull-left" style="padding-top: 8px;">List</h3>
+
+					<form class="form-inline pull-right">
+						<div class="input-group">
+							<textarea 
+								style="resize:none; width:120px;" 
+								class="form-control importExcel" 
+								rows="1" 
+								ng-model="custom.assets.pasted" 
+								placeholder="Paste XL">
+							</textarea>
+							<span 
+								class="input-group-btn" 
+								ng-click="custom.assets.paste()">
+								<button 
+									class="btn btn-default" 
+									type="button" 
+									title="Upload"><i class="fa fa-upload fa-lg"></i>
+								</button>
+							</span>
+						</div>
+					</form>
+				</div> <!-- ./panel-heading -->
+				<div class="panel-body" style="min-height: 400px; max-height: 400px; overflow-y: scroll;">
+					<table class="table table-hover">
+						<tr ng-repeat="i in custom.assets.list">
+							<td ng-click="custom.assets.load(i._id)">{{i.name}}</td>
+							<td class=""><i class="fa fa-trash" ng-click="custom.assets.delete(i._id, $index)"></i></td>
+						</tr>
+					</table>
+				</div> <!-- ./panel-body -->
+			</div> <!-- ./panel -->
+		</div> <!-- /.col-md-3 -->
+
+		<div class="col-md-9">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<div class="row">
+						<div class="col-md-7">
+							<h3 class="panel-title" style="padding-top: 8px; margin-bottom: 8px;">Assets</h3>
+						</div> <!-- ./col-md-7 -->
+						<div class="col-md-5">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Enter Name" ng-model="custom.assets.name">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" ng-click="custom.assets.save()">Save</button>
+								</span>
+							</div> <!-- ./input-group -->
+						</div> <!-- ./col-md-5 -->
+					</div> <!-- ./row -->
+				</div> <!-- ./panel-heading -->
+				<div 
+					drop-zone="[text/csv, application/vnd.ms-excel]"
+					file="custom.dropzone.file" 
+					file-name="custom.dropzone.fileName" 
+					file-size="custom.dropzone.fileSize" 
+					file-csv="custom.dropzone.fileCsv" 
+					file-list="custom.dropzone.fileList" 
+					file-json="custom.dropzone.fileJson">
+					<div class="panel-body" style="min-height: 400px; max-height: 400px; overflow-y: scroll;">
+							<table class="table">
+								<thead>
+									<tr>
+										<th ng-repeat="i in custom.assets.data[0]">{{i}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="i in custom.assets.data.slice(1)">
+										<td ng-repeat="j in i track by $index"><div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100px;">{{j}}</div></td>
+									</tr>
+								</tbody>
+							</table>
+					</div> <!-- ./panel-body -->
+				</div> <!-- ./dropzone -->
+			</div> <!-- ./panel -->
+
+
+
+
+		</div> <!-- /.col-md-9 -->
+
+	</div> <!-- /.row -->
+
+</div> <!-- /.container -->

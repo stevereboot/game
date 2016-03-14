@@ -1,0 +1,68 @@
+{
+  "bonds": {
+    "A": {
+      "balance": 100000,
+      "collateral_group": "all",
+      "coupon": 0,
+      "credit_support": 0,
+      "dated_date": 20151201,
+      "first_payment_date": 20160101,
+      "interest_accrual_methods": [
+        {
+          "coupon_formula": "Coll('all').net_wac * (1.0/12) / Bond('A').interest_fraction"
+        }
+      ],
+      "interest_frequency": 12,
+      "next_payment_date": 20160101,
+      "principal_frequency": 12
+    }
+  },
+  "collateral": {
+    "0": {}
+  },
+  "credit_stack": {},
+  "deal": {
+    "asset_sector": "RMBS",
+    "collateral_delinquency_method": "MBA",
+    "series": "",
+    "template": "simple_new",
+    "ticker": "",
+    "use_cfscript2": true
+  },
+  "historical": {
+    "201512": {
+      "bonds": {
+        "A": {
+          "description": [
+            "A"
+          ],
+          "collateral_group": "all"
+        }
+      },
+      "collateral": {
+        "all": {}
+      },
+      "period_info": {
+        "cashflows": true
+      }
+    }
+  },
+  "template": {
+    "credit_groups": {
+      "all": {
+        "collateral_groups": {
+          "all": {
+            "payrules": [
+              {
+                "custom_python": "source.pay_principal('A')"
+              }
+            ],
+            "bonds": [
+              "A"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
