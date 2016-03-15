@@ -13,8 +13,10 @@ mainSvc.service('mainService', [
                     game.load.image('sky', '../../img/game/assets/sky.png');
                     game.load.image('ground', '../../img/game/assets/platform.png');
                     game.load.image('star', '../../img/game/assets/star.png');
+                    game.load.image('lobby', '../../img/game/assets/lobby.png');
                     game.load.spritesheet('superman', '../../img/game/assets/superman-bit.png', 16, 20);
                     game.load.spritesheet('batman', '../../img/game/assets/batman-bit.png', 16, 20);
+                    game.load.spritesheet('securityGuard', '../../img/game/assets/security-guard-bit.png', 16, 20);
                 }
 
                 // Variables used in both create and update
@@ -32,6 +34,12 @@ mainSvc.service('mainService', [
                     // Sky
                     game.add.sprite(0, 0, 'sky');
 
+                    console.log(game.world.height);
+
+                    var lobby = game.add.sprite(0, game.world.height - 112 - 64, 'lobby');
+                    lobby.smoothed = false;
+                    lobby.scale.setTo(2, 2);
+
                     // Ground and platforms
                     platforms = game.add.group();
                     platforms.enableBody = true;
@@ -47,7 +55,7 @@ mainSvc.service('mainService', [
                     ledge.body.immovable = true;
 
                     // Player
-                    player = game.add.sprite(16, game.world.height - 150, 'batman');
+                    player = game.add.sprite(16, game.world.height - 150, 'securityGuard');
                     player.scale.setTo(2, 2);
                     player.smoothed = false;
                     player.frame = 3;
